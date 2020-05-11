@@ -5,6 +5,7 @@
 # It can be oriented verticaly or horizontaly.
 # It's location on the borad is random but cant protrude beyond it.
 class Ships
+  attr_reader :total_fields_taken, :ships
   def initialize
     @set = %w[vertical horizontal]
     @total_fields_taken = []
@@ -37,12 +38,12 @@ class Ships
       row_before = (mast_position.slice(0).ord - 1).chr
       row_after = (mast_position.slice(0).ord + 1).chr
 
-      @total_fields_taken << "#{row_before}#{mast_position.slice 1}" unless row_before == '`'
+      @total_fields_taken << "#{row_before}#{mast_position.split(/\D/).last}" unless row_before == '`'
       @total_fields_taken << mast_position
-      @total_fields_taken << "#{row_after}#{mast_position.slice 1}" unless row_after == 'k'
+      @total_fields_taken << "#{row_after}#{mast_position.split(/\D/).last}" unless row_after == 'k'
 
-      column_before = mast_position.slice(1).to_i - 1
-      column_after = mast_position.slice(1).to_i + 1
+      column_before = mast_position.split(/\D/).last.to_i - 1
+      column_after = mast_position.split(/\D/).last.to_i + 1
 
       @total_fields_taken << "#{mast_position.slice 0}#{column_before}" unless column_before < 1
       @total_fields_taken << "#{mast_position.slice 0}#{column_after}" unless column_after > 10
