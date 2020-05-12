@@ -10,6 +10,7 @@ require_relative './board.rb'
 #### change the chosen 'hit-box' symbol acordingly.
 ## ask for the 'hit-box' coordinates to strike. i.e. 'c4'
 class Game
+  attr_reader :picks, :hit, :ships
   def initialize
     @picks = []                           # player targeted coordinates
     @hit = []                             # player succesful strikes
